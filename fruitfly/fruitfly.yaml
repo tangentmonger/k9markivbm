@@ -2,7 +2,9 @@ logging:
   level: info
   destination: stderr
 modules:
-  usbhid:
+  #usbhid:
     # Flexible USB keyboard for use in dev.
-    vendor: 0x0e6a
-    product: 0x6001
+    #vendor: 0x0e6a
+    #product: 0x6001
+  play:
+    # Plays test sound every 3s
