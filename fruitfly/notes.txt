@@ -1,0 +1,23 @@
+=== USB permissions ===
+
+Problem: mod_usbhid.py fails with:
+fruitfly[3343] ERROR usbhid poll crashed: USBError(13, 'Access denied (insufficient permissions)') (next run delayed by 5.00s)
+
+Solution:
+* create udev rules file:
+sudo vim /etc/udev/rules.d/1-flexible-keyboard.rules
+
+* add rule to file:
+ATTRS{idVendor}=="0e6a", ATTRS{idProduct}=="6001", ACTION=="add", SUBSYSTEMS=="usb", MODE="0660", GROUP="plugdev"
+
+* check that user k9 is in plugdev group 
+id
+sudo vim /etc/group
+
+* reload udev rules
+udevadm trigger
+and/or replug keyboard
+
+* check ownership of keyboard:
+ls -al /dev/bus/usb/001/
+(should be one usable by plugdev group)
