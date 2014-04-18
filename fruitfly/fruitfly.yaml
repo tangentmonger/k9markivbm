@@ -7,4 +7,4 @@ modules:
     vendor: 0x0e6a
     product: 0x6001
   play:
-    # Plays test sound every 3s
+    # Plays sounds on keypress events
