@@ -34,21 +34,24 @@ class wum(fruitfly.Module):
     _sound_bank = None
     _device = None
     _current_sound = None
-    _changed_parameter = True
+    _changed_parameter = False
     _volume = 3 #as a level
     MAX_VOLUME = 3
+
 
     def init(self):
         # Called by Fruitfly
         self._sound_bank = self._locate_and_modify_sounds(self.MAX_SPEED)
         self._device = self._setup_device()
+        self._changed_parameter = True
         self._select_sound()
 
     @fruitfly.repeat(PUMP_DURATION)
     def _pump_sound(self): 
         """Play the next chunk of the current stream."""
-        if self._changed_parameter:
-            self._select_sound()
+        #if self._changed_parameter:
+        #    self._select_sound()
+        #NO! interrupting samples = clicks
 
         if self._current_sound:
             data_chunk = self._current_sound.readframes(self.FRAMES_PER_PUMP ) #string of bytes
@@ -62,11 +65,8 @@ class wum(fruitfly.Module):
             self._changed_parameter = False
             
             #load new sound
-            if self._current_sound:
-                self._current_sound = None
-
+            print("loading sound: speed, vol", self._speed, self._volume)
             if self._speed > 0:
-                #self._current_sound = self._sound_bank[self._speed -1]
                 self._current_sound = self._sound_bank[self._speed -1][self._volume]
                 self._current_sound.rewind()
                 
@@ -79,17 +79,7 @@ class wum(fruitfly.Module):
                self._current_sound.rewind()
                self._pump_sound() #preload buffer
         
-    def _locate_sounds(self, n_sounds):
-        """Find wum samples and preload them as streams"""
-        sounds = []
-        for speed in range(1, n_sounds+1): # speed 0 = no sound
-            filename = os.path.join(self.config['samples'], 'wum' + str(speed) + '.wav')
-            print(filename)
-            sounds.append(wave.open(filename, 'rb'))
-            #TODO: fail gracefully if a sample is missing
-        return sounds
-
-
+  
     def _locate_and_modify_sounds(self, n_sounds):
         """Find wum samples and preload them as streams"""
         sounds = []
@@ -139,16 +129,14 @@ class wum(fruitfly.Module):
         print("wum sees keyup")
         key = keycode[1]
         if key == "on":
-            if self._speed < self.MAX_SPEED:
-                pass
+            #if self._speed < self.MAX_SPEED:
                 #self._speed += 1
                 #self._changed_parameter = True
             if self._volume < self.MAX_VOLUME:
                 self._volume += 1 
                 self._changed_parameter = True
         elif key == "off":
-            if self._speed > 0:
-                pass
+            #if self._speed > 0:
                 #self._speed -= 1
                 #self._changed_parameter = True
             if self._volume > 0:
@@ -156,4 +144,16 @@ class wum(fruitfly.Module):
                 self._changed_parameter = True
         print(self._volume)
 
-      
+    @fruitfly.event("speed_change")
+    def _set_speed(self, _, speed):
+        print("wum sees speed change", speed)
+        #Assumption: this art car won't exceed the 5mph speed limit
+        #5mph =~ 2.5m/s
+        
+        
+        new_speed = int(speed / 2.5 * self.MAX_SPEED)
+        if new_speed != self._speed:
+
+            self._speed = new_speed
+            print(self._speed)
+            self._changed_parameter = True

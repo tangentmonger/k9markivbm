@@ -68,3 +68,5 @@ modules:
   wum:
     # Continuous wum noise
       samples: samples/wum/
+  gps_speed:
+    #Get current speed from GPS module
