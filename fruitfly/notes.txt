@@ -21,3 +21,9 @@ and/or replug keyboard
 * check ownership of keyboard:
 ls -al /dev/bus/usb/001/
 (should be one usable by plugdev group)
+
+=== Python 3 memory leak ===
+
+Caused by aslaaudio: https://github.com/mopidy/pyspotify/issues/127
+
+Workaround: run under Python 2 for now
