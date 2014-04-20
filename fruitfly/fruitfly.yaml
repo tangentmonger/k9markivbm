@@ -40,5 +40,30 @@ modules:
       38:  light
   play:
     # Plays sounds on keypress events
-  #wum:
-    # Continuous wum noise
+      mainmenu: samples/affirmative.wav
+      s1: samples/negative.wav
+      s2: samples/prognosticationimpossible.wav
+      s3: samples/immaturehumanoid.wav
+      s4: samples/hostilecraftapproaching.wav
+      s5: samples/IamK9andIamwarningyou.wav
+      s6: samples/Itoohaveoffensivecapability.wav
+      #"on": wum volume up
+      #"off": wum volume down
+      left:  samples/turnleft.wav  
+      up: samples/gleeplegleeple.wav  
+      right: samples/turnright.wav
+      down: samples/bipbipbipbip.wav
+      one: samples/alertdangerwarning.wav
+      two: samples/orientationinthevoid.wav
+      three: samples/pieceofcake.wav
+      four: samples/sentientlifeformapproaching.wav
+      five: samples/yoursillinessisnoted.wav
+      six: samples/youareaverystupidmachine.wav
+      seven: samples/thereisnoneedforgratitude.wav
+      eight: samples/enteringselfdestructsequence.wav
+      nine: samples/optimism.wav
+      zero: samples/suchactionswarrantimmediatedeath.wav
+      dark: samples/allmysystemsareatmaximumfunction.wav
+      light: samples/batteriesmyexhaustednearlyare.wav
+    #wum:
+        # Continuous wum noise
