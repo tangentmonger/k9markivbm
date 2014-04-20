@@ -19,7 +19,7 @@ class play(fruitfly.Module):
 
     _last_key = None
 
-        def _setup_device(self):
+    def _setup_device(self):
         card = 'default'
         self._device = alsaaudio.PCM(card=card, mode=alsaaudio.PCM_NORMAL)
         self._device.setchannels(self.CHANNELS)
