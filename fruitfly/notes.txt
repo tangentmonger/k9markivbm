@@ -24,6 +24,5 @@ ls -al /dev/bus/usb/001/
 
 === Python 3 memory leak ===
 
-Caused by aslaaudio: https://github.com/mopidy/pyspotify/issues/127
-
+Caused by aslaaudio: http://sourceforge.net/p/pyalsaaudio/bugs/16/
 Workaround: run under Python 2 for now
