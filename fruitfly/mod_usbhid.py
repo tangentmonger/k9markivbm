@@ -88,12 +88,25 @@ class usbhid(fruitfly.Module):
 
             # Send keydown events for any new keys.
             for keycode in keyspressed.difference(self._keyspressed):
-                self.send_event("keydown", (modifiers, keycode))
+                label = self._getLabel(keycode)
+                self.send_event("keydown", (modifiers, label, keycode))
 
             # Send keyup events for any released keys.
             for keycode in self._keyspressed.difference(keyspressed):
-                self.send_event("keyup", (modifiers, keycode))
+                label = self._getLabel(keycode)
+                self.send_event("keyup", (modifiers, label, keycode))
 
             # Store set of pressed keys for next time.
             self._keyspressed = keyspressed
+    
+    def _getLabel(self, keycode):
+        """Given a numeric `keycode`, returns a short string label for
+        that the keycode maps to. Mappings are defined in the config.
+        Returns None if there is no label for a keycode."""
+        try:
+            return self.config['labelmap'][keycode]
+        except KeyError:
+            return None
 
+    def __del__(self):
+        self._handle.releaseInterface()

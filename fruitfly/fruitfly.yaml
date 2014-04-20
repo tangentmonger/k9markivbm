@@ -6,5 +6,39 @@ modules:
     # Flexible USB keyboard for use in dev.
     vendor: 0x0e6a
     product: 0x6001
+    # apple
+    #vendor: 0x05ac
+    #product: 0x021e
+    # k9 keypad
+    vendor: 0x04f3
+    product: 0x0103
+    labelmap:
+      55:  mainmenu
+      29:  s1
+      54:  s2
+      16:  s3
+      25:  s4
+      6:   s5
+      136: s6
+      22:  "on"
+      57:  "off"
+      33:  left
+      5:   up
+      59:  right
+      34:  down
+      53:  one
+      46:  two
+      35:  three
+      30:  four
+      37:  five
+      36:  six
+      139: seven
+      135: eight
+      17:  nine
+      65:  zero
+      101: dark
+      38:  light
   play:
     # Plays sounds on keypress events
+  #wum:
+    # Continuous wum noise
