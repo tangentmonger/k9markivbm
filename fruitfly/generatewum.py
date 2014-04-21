@@ -27,9 +27,9 @@ def generate_wum(path, n_sounds):
         #Use numbers that are factors of 4410 to reduce clicks between samples
         #1 2 3 5 6 7 9 10 14 15 18 21 30 35 42 45 49 63 70 90 98 105 126 147 210 245 294 315 441 490 630 735 882 1470 2205 4410
         
-        freqCR = [21,35, 42, 49, 63, 90][speed] # random.randint(500, 3000) # frequency of the carrier wave (Hz) 
+        freqCR = [15, 21,35, 42, 49, 63, 90, 105, 126, 147, 210, 245][speed] # random.randint(500, 3000) # frequency of the carrier wave (Hz) 
         freqAM = 98 #random.randint(1, 10) # frequency of the AM wave (Hz) 
-        freqFM = [2, 3, 5,9,15,21,35, 42, 49][speed] #random.randint(1, 10) # frequency of the FM wave (Hz) 
+        freqFM = [2, 3, 5,9,15,21,35, 42, 49, 63, 70][speed] #random.randint(1, 10) # frequency of the FM wave (Hz) 
         freqFMDev = 49 #random.randint(100, 400) # frequency deviation for FM (Hz) 
         phaseCR = 0 #random.random() * math.pi * 2
         phaseAM = 0 #random.random() * math.pi * 2
@@ -69,6 +69,6 @@ FRAMES_PER_PUMP =  int(FRAME_RATE * FRAME_DURATION * PUMP_DURATION * BPS)
 
 
 if __name__ == '__main__':
-    generate_wum('samples/wum/', 5)
+    generate_wum('samples/wum/', 10)
     
    

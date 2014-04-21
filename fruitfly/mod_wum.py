@@ -28,15 +28,16 @@ class wum(fruitfly.Module):
     FRAMES_PER_PUMP =  int(FRAME_RATE * FRAME_DURATION * PUMP_DURATION * BPS) 
 
     #Art car settings
-    MAX_SPEED = 5
+    MAX_SPEED = 10
     _speed = 1
 
     _sound_bank = None
     _device = None
     _current_sound = None
     _changed_parameter = False
-    _volume = 3 #as a level
-    MAX_VOLUME = 3
+    _volume = 4 #as a level
+    MAX_VOLUME = 4
+    _auto = True
 
 
     def init(self):
@@ -67,7 +68,7 @@ class wum(fruitfly.Module):
             #load new sound
             print("loading sound: speed, vol", self._speed, self._volume)
             if self._speed > 0:
-                self._current_sound = self._sound_bank[self._speed -1][self._volume]
+                self._current_sound = self._sound_bank[self._speed -1][self._volume-1]
                 self._current_sound.rewind()
                 
                 print("nfraems as read", self._current_sound.getnframes())
@@ -91,7 +92,7 @@ class wum(fruitfly.Module):
 
 
             volumes = []
-            for volume in range(0, self.MAX_VOLUME + 1):
+            for volume in range(1, self.MAX_VOLUME + 1):
                 print("building volume", volume)
 
                 fmt = 'h' * (self.FRAME_RATE * self.FRAME_DURATION)
@@ -129,31 +130,36 @@ class wum(fruitfly.Module):
         print("wum sees keyup")
         key = keycode[1]
         if key == "on":
-            #if self._speed < self.MAX_SPEED:
-                #self._speed += 1
-                #self._changed_parameter = True
             if self._volume < self.MAX_VOLUME:
                 self._volume += 1 
                 self._changed_parameter = True
         elif key == "off":
-            #if self._speed > 0:
-                #self._speed -= 1
-                #self._changed_parameter = True
             if self._volume > 0:
                 self._volume -= 1
                 self._changed_parameter = True
+        elif key == "up":
+            self._auto = True
+        elif key == "right":
+            self._auto = False
+            if self._speed < self.MAX_SPEED:
+                self._speed += 1
+                self._changed_parameter = True
+        elif key == "left":
+            self._auto = False
+            if self._speed > 0:
+                self._speed -= 1
+                self._changed_parameter = True
+
         print(self._volume)
 
     @fruitfly.event("speed_change")
     def _set_speed(self, _, speed):
-        print("wum sees speed change", speed)
         #Assumption: this art car won't exceed the 5mph speed limit
         #5mph =~ 2.5m/s
-        
-        
-        new_speed = int(speed / 2.5 * self.MAX_SPEED)
-        if new_speed != self._speed:
+        if self._auto: 
+            new_speed = int(speed / 2.5 * self.MAX_SPEED)
+            if new_speed != self._speed:
 
-            self._speed = new_speed
-            print(self._speed)
-            self._changed_parameter = True
+                self._speed = new_speed
+                print(self._speed)
+                self._changed_parameter = True

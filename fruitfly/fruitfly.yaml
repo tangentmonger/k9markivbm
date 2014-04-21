@@ -40,31 +40,31 @@ modules:
       38:  light
   play:
     # Plays sounds on keypress events
-      mainmenu: samples/affirmative.wav
-      s1: samples/negative.wav
-      s2: samples/prognosticationimpossible.wav
-      s3: samples/immaturehumanoid.wav
-      s4: samples/hostilecraftapproaching.wav
-      s5: samples/IamK9andIamwarningyou.wav
-      s6: samples/Itoohaveoffensivecapability.wav
+      s1: samples/o_affirmative.wav #prognosticationimpossible.wav
+      s2: samples/o_negative.wav
+      s3: samples/gleeplegleeple.wav  #immaturehumanoid.wav
+      s4: samples/bipbipbipbip.wav  #hostilecraftapproaching.wav
+      #s4:
+      #s5: #IamK9andIamwarningyou.wav
+      #s6:  #Itoohaveoffensivecapability.wav
       #"on": wum volume up
       #"off": wum volume down
-      left:  samples/turnleft.wav  
-      up: samples/gleeplegleeple.wav  
-      right: samples/turnright.wav
-      down: samples/bipbipbipbip.wav
-      one: samples/alertdangerwarning.wav
-      two: samples/orientationinthevoid.wav
-      three: samples/pieceofcake.wav
-      four: samples/sentientlifeformapproaching.wav
-      five: samples/yoursillinessisnoted.wav
-      six: samples/youareaverystupidmachine.wav
-      seven: samples/thereisnoneedforgratitude.wav
-      eight: samples/enteringselfdestructsequence.wav
-      nine: samples/optimism.wav
-      zero: samples/suchactionswarrantimmediatedeath.wav
-      dark: samples/allmysystemsareatmaximumfunction.wav
-      light: samples/batteriesmyexhaustednearlyare.wav
+      #left: wum speed down
+      #up: wum speed auto  
+      #right: wum speed up
+      #down:        
+      one: samples/o_firecapability.wav #samples/alertdangerwarning.wav
+      two: samples/o_locatetrousers.wav #samples/orientationinthevoid.wav
+      three: samples/o_MOOP.wav #samples/pieceofcake.wav
+      four: samples/o_morningyoga.wav #samples/sentientlifeformapproaching.wav
+      five: samples/o_sillysparklepony.wav #samples/yoursillinessisnoted.wav
+      six:  samples/o_artcarapproaching.wav #samples/youareaverystupidmachine.wav
+      seven: samples/o_betterlastyear.wav #samples/thereisnoneedforgratitude.wav
+      eight: samples/o_conductivedust.wav #samples/enteringselfdestructsequence.wav
+      nine: samples/o_deepplaya.wav #samples/optimism.wav
+      zero: samples/o_dubstep.wav #samples/suchactionswarrantimmediatedeath.wav
+      light: samples/o_duststorm.wav #samples/allmysystemsareatmaximumfunction.wav
+      dark: samples/o_alertwarning.wav #samples/batteriesmyexhaustednearlyare.wav
   wum:
     # Continuous wum noise
       samples: samples/wum/
