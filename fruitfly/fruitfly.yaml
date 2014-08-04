@@ -1,0 +1,8 @@
+logging:
+  level: info
+  destination: stderr
+modules:
+  usbhid:
+    # Flexible USB keyboard for use in dev.
+    vendor: 0x0e6a
+    product: 0x6001
